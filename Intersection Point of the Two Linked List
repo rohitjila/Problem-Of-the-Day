@@ -1,0 +1,15 @@
+def intersetPoint(head1,head2):
+    a= head1
+    b= head2 
+    while(a != b):
+        if (a == None):
+            a = head2
+        else:
+            a=a.next
+            
+        if (b == None):
+            b = head1
+        else:
+            b=b.next
+            
+    return a.data
