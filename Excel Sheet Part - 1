@@ -1,0 +1,9 @@
+class Solution:
+    def ExcelColumn(self, N):
+        s=""
+        while(N):
+            N-=1
+            ch=chr(65+N%26)
+            s+=ch
+            N//=26
+        return s[::-1]
