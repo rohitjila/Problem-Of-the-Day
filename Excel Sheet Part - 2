@@ -1,0 +1,8 @@
+def ExcelColumn(N):
+    res=0
+    for ch in N:
+        d = ord(ch) - ord("A") + 1
+        res = res * 26 + d
+    return res
+N="AYD"
+print(ExcelColumn(N))
