@@ -1,0 +1,16 @@
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        ans=0
+        mp=collections.defaultdict(lambda : 0)
+        Sum = 0
+        mp[0]=-1
+        for i in range(len(nums)):
+            if (nums[i] == 0):
+                nums[i] = -1
+            Sum += nums[i]
+            if (Sum in mp):
+                ans=max(ans,i - mp[Sum])
+                
+            else:
+                mp[Sum]=i
+        return ans
