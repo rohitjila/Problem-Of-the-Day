@@ -1,0 +1,38 @@
+class TrieNode:
+    def __init__(self):
+        self.child = dict()
+        self.count = 0
+        self.endOfWord = False
+        
+class Trie:
+    def __init__(self):
+        self.root=TrieNode()
+        
+    def insert(self,word):
+        ptr=self.root
+        for c in word:
+            ptr.count+=1
+            ptr.child[c]=ptr.child.get(c,TrieNode())
+            ptr=ptr.child[c]
+        ptr.endOfWord=True
+    
+    def getUniquePrefix(self,word):
+        ptr=self.root
+        ans=''
+        for c in word:
+            ans+=c
+            ptr=ptr.child[c]
+            if ptr.count<=1:
+                break
+        return ans
+        
+class Solution:
+    def findPrefixes(self, arr, N):
+        trie=Trie()
+        for word in arr:
+            trie.insert(word)
+        unique=[]
+        for word in arr:
+            unique.append(trie.getUniquePrefix(word))
+        return unique
+        # code here 
