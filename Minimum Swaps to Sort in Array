@@ -1,23 +1,23 @@
+
+   
 class Solution:
     
     #Function to find the minimum number of swaps required to sort the array.
 	def minSwaps(self, nums):
-	    n = len(nums)
-        cur = []
-        for i in range(n):
-            cur.append([nums[i], i])
-        cur.sort()
-        vis = [False for i in range(n)]
-        ans = 0
-        for i in range(n):
-            if(vis[i] or cur[i][1] == i):
-                continue
-            else:
-                cycle_size = 0
-                j = i
-                while(vis[j] == False):
-                    vis[j] = True
-                    j = cur[j][1]
-                    cycle_size = cycle_size + 1
-                ans = ans + max(0, cycle_size - 1)
-        return ans
+	    n=len(nums)
+	    arr=[]
+	    for i in range(n):
+	        arr.append([nums[i],i])
+	    arr.sort()
+	    swap = 0
+	    i=0
+	    while(i < n):
+	        value = arr[i][0]  
+	        index = arr[i][1]
+	        
+	        if (i != index):
+	            swap+=1
+	            arr[i],arr[index] = arr[index],arr[i]
+	            i-=1
+	        i+=1 
+	    return swap
