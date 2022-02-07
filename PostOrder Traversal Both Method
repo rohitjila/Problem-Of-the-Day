@@ -1,0 +1,40 @@
+'''
+# Node Class:
+class Node:
+    def init(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+class Solution:
+    # Return a list containing the inorder traversal of the given tree
+    def solve(self,node,arr):
+        if node is None:
+            return 
+        self.solve(node.left,arr)
+        self.solve(node.right,arr)
+        arr.append(node.data)
+        return arr
+        
+        
+    def postOrder(self,node):
+        if node is None:
+            return 
+        arr=[]
+        self.solve(node,arr)
+        return arr
+        
+        
+        
+        arr=[]
+        stack=[]
+        if (node):
+            stack.append(node)
+        while(stack):
+            ele = stack.pop()
+            arr.append(ele.data)
+            if (ele.left):
+                stack.append(ele.left)
+            if (ele.right):
+                stack.append(ele.right)
+        return arr[::-1] 
