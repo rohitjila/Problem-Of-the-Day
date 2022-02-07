@@ -1,0 +1,10 @@
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        mp=collections.defaultdict(lambda : 0)
+        for i in range(len(s)):
+            mp[s[i]]+=1
+        for i in range(len(t)):
+            if (mp[t[i]] == 0):
+                return t[i]
+            else:
+                mp[t[i]]-=1
