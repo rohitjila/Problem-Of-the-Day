@@ -1,0 +1,12 @@
+class Solution:
+    def addDigits(self, num: int) -> int:
+        if (num >= 0 and num <= 9):
+            return num
+        ans=num
+        while(ans > 9):
+            rem=ans % 10
+            quo=ans // 10
+            ans = rem + quo
+        return ans
+            
+            
