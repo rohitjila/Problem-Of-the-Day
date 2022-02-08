@@ -1,0 +1,15 @@
+import math
+class Solution:
+    def prime(self,n):
+        if (n > 1):
+            for i in range(2,int(math.sqrt(n)+1)):
+                if (n % i == 0):
+                    return False
+            return True
+                
+    def primeRange(self,m,n):
+        arr=[]
+        for i in range(m,n+1):
+            if (self.prime(i)):
+                arr.append(i)
+        return arr
