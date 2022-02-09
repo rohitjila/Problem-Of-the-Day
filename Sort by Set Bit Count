@@ -1,0 +1,18 @@
+class Solution:
+    # def setBit(self,n):
+    #     count=0
+    #     while(n):
+    #         if (n & 1):
+    #             count+=1
+    #         n=n>>1
+    #     return count        
+        
+    def sortBySetBitCount(self, arr, n):
+        arr.sort(key= lambda x:bin(x).count('1'),reverse=True)
+        # res=[]
+        # for i in range(n):
+        #     ans=self.setBit(arr[i])
+        #     res.append([arr[i],ans])
+        # res.sort(key = lambda x:x[1] , reverse = True)
+        # for i in range(n):
+        #     arr[i]=res[i][0]
