@@ -1,0 +1,39 @@
+class Solution:
+    def binary_search(self,arr,n):
+        low=0
+        high=len(arr)-1
+        while(low <= high):
+            mid = low+(high-low)//2
+            if (arr[mid] == n):
+                return True
+            elif(arr[mid] > n):
+                high=mid-1
+            else:
+                low=mid+1
+        return False
+        
+        
+        
+    def findPairs(self, arr: List[int], k: int) -> int:
+        mp=collections.defaultdict(lambda : 0)
+        for i in range(len(arr)):
+            mp[arr[i]]+=1
+        count=0
+        for i in mp:
+            if (k > 0):
+                if (i+k in mp):
+                    count+=1
+            if (k == 0):
+                if (mp[i] >= 2):
+                    count+=1
+        return count
+                    
+                
+            
+        
+        s=set()
+        arr.sort()
+        for i in range(len(arr)-1):
+            if (self.binary_search(arr[i+1:len(arr)],arr[i] + k) == True):
+                s.add((arr[i],arr[i]+k))
+        return len(s)
