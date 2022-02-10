@@ -1,0 +1,14 @@
+class Solution:
+    def subarraySum(self, nums: List[int], Sum: int) -> int:
+        n=len(nums)
+        count=0
+        mp=collections.defaultdict(lambda : 0)
+        cs=0
+        for i in range(n):
+            cs=cs+nums[i]
+            if (cs == Sum):
+                count+=1
+            if (cs-Sum) in mp:
+                count+=mp[-Sum+cs] # to print index do print(mp[cs - Sum] + 1 to i)
+            mp[cs]+=1 
+        return count
