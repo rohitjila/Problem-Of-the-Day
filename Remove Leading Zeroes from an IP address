@@ -1,0 +1,9 @@
+class Solution:
+    def newIPAdd(self, S):
+        s=S.split(".")
+        ans=""
+        arr=[]
+        for i in s:
+            arr.append(str(int(i)))
+        ans+=".".join(arr)
+        return ans
