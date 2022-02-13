@@ -1,0 +1,18 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res=[]
+        self.sub(0,nums,[],res)
+        return res
+    
+    def sub(self,ind,nums,lst,res):
+        if (ind == len(nums)):
+            res1=[]
+            for i in range(len(lst)):
+                res1.append(lst[i])
+            res.append(res1)
+            return
+        
+        lst.append(nums[ind])
+        self.sub(ind+1,nums,lst,res)
+        lst.pop()
+        self.sub(ind+1,nums,lst,res)
