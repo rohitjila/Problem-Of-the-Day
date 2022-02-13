@@ -1,0 +1,42 @@
+class Solution:
+    def solve(self,root,res,val):
+        if root is None:
+            return 
+        if (val == len(res)):
+            res.append(root.data)
+        else:
+            res[val]=max(res[val],root.data)
+        self.solve(root.left,res,val+1)
+        self.solve(root.right,res,val+1)
+        
+        
+        
+    def largestValues(self, root):
+        if root is None:
+            return
+        global res
+        res=[]
+        self.solve(root,res,0)
+        return res
+        
+        
+        
+        
+        if root is None:
+            return
+        queue=[]
+        ans=[]
+        queue.append(root)
+        while(queue):
+            count = len(queue)
+            mx=0
+            while(count > 0):
+                curr = queue.pop(0)
+                mx = max(curr.data,mx)
+                if (curr.left):
+                    queue.append(curr.left)
+                if (curr.right):
+                    queue.append(curr.right)
+                count-=1
+            ans.append(mx)
+        return ans
