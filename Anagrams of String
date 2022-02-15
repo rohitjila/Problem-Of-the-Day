@@ -1,0 +1,12 @@
+def remAnagram(str1,str2):
+    ch, Sum = [0]*26, 0;
+    for c in str1:
+       ch[ord(c)-ord('a')]+=1;
+       
+    for c in str2:
+       ch[ord(c)-ord('a')]-=1;
+       
+    for i in ch:
+       Sum+=abs(i);
+       
+    return Sum;  
