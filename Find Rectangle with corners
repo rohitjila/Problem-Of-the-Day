@@ -1,0 +1,32 @@
+def matrix(m):
+    for i in range(len(m)):
+        for j in range(len(m[0])):
+            if (m[i][j] == 1):
+                for i2 in range(i+1,len(m)):
+                    for j2 in range(j+1,len(m[0])):
+                        if( (m[i][j2] == 1) and  (m[i2][j] == 1) and  (m[i2][j2] == 1)):
+                            return True
+    return False
+                        
+                        
+    
+m=[[1,0,0,1,0],
+[0,0,1,0,1],
+[0,0,0,1,0],
+[1,0,1,0,1]]
+print(matrix(m))
+
+
+from collections import defaultdict
+class Solution:    
+    def ValidCorner(self,matrix): 
+        mp=defaultdict(list)
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                if (matrix[i][j] == 1):
+                    for j2 in range(j+1,len(matrix[0])):
+                        if (matrix[i][j] == 1 and matrix[i][j2] == 1):
+                            if (j in mp and j2 in mp[j]):
+                                return True
+                            mp[j].append(j2)
+        return False
