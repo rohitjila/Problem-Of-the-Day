@@ -1,0 +1,27 @@
+class Node:
+    def _init_(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+        '''
+class Solution:
+    def supplyVaccine(self, root):
+        global ans
+        ans = 0
+        if (self.vaccine(root) == "want"):
+            ans+=1
+        return ans
+        
+    def vaccine(self,root):
+        global ans
+        if (root == None):
+            return "ok"
+        left = self.vaccine(root.left)
+        right = self.vaccine(root.right)
+        
+        if (left == "want" or right == "want"):
+            ans+=1
+            return "provide"
+        if (left == "provide" or right == "provide"):
+            return "ok"
+        return "want"
