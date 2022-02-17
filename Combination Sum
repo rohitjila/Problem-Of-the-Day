@@ -1,0 +1,20 @@
+class Solution:
+    def combinationSum(self, arr: List[int], target: int) -> List[List[int]]:
+        lst=[]
+        self.solve(arr,target,0,[],lst)
+        return lst
+    
+    def solve(self,arr,target,ind,res,lst):
+        if (ind == len(arr)): 
+            if (target == 0):
+                res1=[]
+                for i in range(len(res)):
+                    res1.append(res[i])
+                lst.append(res1)
+            return
+        
+        if (target >= arr[ind]):
+            res.append(arr[ind])
+            self.solve(arr,target-arr[ind],ind,res,lst)
+            res.pop()
+        self.solve(arr,target,ind+1,res,lst)
