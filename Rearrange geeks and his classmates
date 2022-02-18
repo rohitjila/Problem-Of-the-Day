@@ -1,0 +1,9 @@
+#User function Template for python3
+
+class Solution:
+    def prank(self, a, n): 
+        b=a.copy()
+        for i in range(n):
+            b[i]=a[a[i]]
+        for i in range(n):
+            a[i]=b[i]
