@@ -1,0 +1,19 @@
+class Solution:
+    def minimumDeviation(self, nums: List[int]) -> int:
+        heap=[]
+        for x in nums:
+            if (x & 1):
+                heap.append(-2 * x)
+            else:
+                heap.append(-x)
+                
+                
+        heapify(heap)
+        ma, mi = -heap[0], -max(heap)
+        ans = ma - mi
+        while heap[0] % 2 == 0:
+            x = heappop(heap) // 2
+            heappush(heap, x)
+            ma, mi = -heap[0], min(mi, -x)
+            ans = min(ans, ma - mi)
+        return ans
