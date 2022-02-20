@@ -1,0 +1,29 @@
+import sys
+def sliding(arr,n,diff):
+    i=1
+    j=0
+    count=0
+    while(i < n):
+        while((arr[i] - arr[j]) > diff):
+            j+=1
+        count+=(i-j)
+        i+=1
+    return count
+    
+    
+def kthDiff(arr, n, k):
+    arr.sort()
+    high=arr[n-1]-arr[0]
+    low=sys.maxsize
+    for i in range(1,n):
+        if(arr[i]-arr[i-1]<low):
+            low = arr[i]-arr[i-1];
+    while(low < high):
+        mid = (low + high) >> 1
+        ans = sliding(arr,n,mid)
+        if (ans < k):
+            low = mid+1
+        else:
+            high = mid 
+    return low
+    
