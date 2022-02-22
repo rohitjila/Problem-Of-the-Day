@@ -1,0 +1,27 @@
+from collections import deque
+dr = [-1, 0, 0, 1]
+dc = [ 0,-1, 1, 0]
+class Solution:
+    def findDistance(self, matrix, m, n):
+        q=deque()
+        mat=[[-1 for i in range(n)] for i in range(m)]
+        for i in range(m):
+            for j in range(n):
+                if (matrix[i][j] == "B"):
+                    mat[i][j] = 0
+                    q.append((i,j))
+                    
+        while len(q):
+            r=q[0][0]
+            c=q[0][1]
+            q.popleft()
+            
+            for i in range(4):
+                rnext=dr[i]+r
+                cnext=dc[i]+c
+                
+                if (rnext >= 0 and rnext < m and cnext >=0 and cnext < n):
+                    if (mat[rnext][cnext] == -1 and matrix[rnext][cnext] == "O"):
+                        mat[rnext][cnext] = mat[r][c] + 1
+                        q.append((rnext,cnext))
+        return mat
