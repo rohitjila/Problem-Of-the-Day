@@ -1,0 +1,23 @@
+
+class Solution:
+    def dfs(self,node,copy,vis):
+        vis[copy.val] = copy
+        for nei in node.neighbors:
+            if (vis[nei.val] == None):
+                newnode = Node(nei.val)
+                copy.neighbors.append(newnode)
+                self.dfs(nei,newnode,vis)
+            else:
+                copy.neighbors.append(vis[nei.val])
+                
+            
+       
+        
+        
+    def cloneGraph(self, node): # DFS recursively
+        if (node == None):
+            return None
+        vis = [None]*(1000)
+        copy = Node(node.val)
+        self.dfs(node,copy,vis)
+        return copy
