@@ -1,0 +1,14 @@
+class Solution:
+    def compareVersion(self, v1: str, v2: str) -> int:
+        vers1=[int(i) for i in v1.split(".")]
+        vers2=[int(i) for i in v2.split(".")]
+        
+        for i in range(max(len(vers1),len(vers2))):
+            vans=vers1[i] if i < len(vers1) else 0
+            vans1=vers2[i] if i < len(vers2) else 0
+            
+            if (vans > vans1):
+                return 1
+            elif(vans < vans1):
+                return -1
+        return 0
