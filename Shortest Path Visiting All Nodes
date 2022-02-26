@@ -1,0 +1,28 @@
+class Solution:
+    def shortestPathLength(self, graph: List[List[int]]) -> int:
+        if (len(graph) == 1):
+            return 0
+        finalState = ((1 << len(graph)) - 1)
+        print(finalState)
+        queue = []
+        for i in range(len(graph)):
+            queue.append([i,1<<i])
+        print(queue)
+        visited = [[0 for i in range(finalState+2)] for i in range(len(graph)+1)]
+        
+        ans = 0
+        while(queue):
+            size = len(queue)
+            ans+=1
+            
+            for i in range(size):
+                node,nodeID=queue.pop(0)
+                
+                for nei in graph[node]:
+                    newNodeId = nodeID | 1 << nei
+                    if (visited[nei][newNodeId] == 1):
+                        continue
+                    visited[nei][newNodeId] = 1
+                    if (newNodeId == finalState):
+                        return ans
+                    queue.append([nei,newNodeId])
