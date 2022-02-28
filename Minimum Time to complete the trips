@@ -1,0 +1,19 @@
+class Solution:
+    def trips(self,time,mid):
+        trip=0
+        for i in range(len(time)):
+            trip+=(mid//time[i])
+        return trip
+            
+            
+    def minimumTime(self, time: List[int], totalTrips: int) -> int:
+        low=1
+        high=1e14
+        while(low <= high):
+            mid = int(low+high) >> 1
+            if (self.trips(time,mid) >= totalTrips):
+                ans=mid
+                high=mid-1
+            else:
+                low=mid+1
+        return ans
