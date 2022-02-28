@@ -1,0 +1,13 @@
+class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        ans=[]
+        n=len(nums)
+        simple=""
+        for i in range(n):
+            if (i <= n-2 and nums[i]+1 == nums[i+1]):
+                if (simple == ""):
+                    simple = str(nums[i]) + "->"
+            else:
+                ans.append(simple + str(nums[i]))
+                simple=""
+        return ans
