@@ -1,0 +1,25 @@
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        arr=[]
+        for i in range(0,n+1):
+            ans=self.countbits(i)
+            arr.append(ans)
+        return arr
+    def countbits(self,n):
+        if (n == 0):
+            return 0
+        else:
+            return (n & 1) + self.countbits(n>>1)
+        
+    
+        
+        
+        
+        # arr=[]
+        # for i in range(0,n+1):
+        #     count = 0
+        #     while(i):
+        #         count += i & 1
+        #         i >>= 1
+        #     arr.append(count)
+        # return arr
