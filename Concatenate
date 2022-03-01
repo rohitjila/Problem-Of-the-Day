@@ -1,0 +1,31 @@
+import math
+from collections import defaultdict
+class Solution:
+    def countPairs(self, N, X, numbers): 
+        count=0
+        X=str(X)
+        mp=defaultdict(lambda : 0)
+        for i in range(N):
+            mp[str(numbers[i])]+=1
+        # print(mp)
+        for i in range(len(X)-1):
+            s=X[:i+1]
+            # print(s)
+            t=X[i+1:]
+            # print(t)
+            if (s in mp):
+                if (t in mp):
+                    if (s == t):
+                        val1=mp[s]
+                        val2=mp[t]
+                        # print(s,t)
+                        count+=(val2*(val2-1))
+                    else:
+                        val1=mp[s]
+                        # print(s,t)
+                        val2=mp[t]
+                        # print(val2)
+                        count+=(val1*val2)
+        return count
+                
+                
