@@ -1,0 +1,31 @@
+#User function Template for python3
+from collections import defaultdict
+class Solution:
+    def countStrings(self, S):
+        count=0
+        n=len(S)
+        flag=0
+        mp=defaultdict(lambda : 0)
+        for i in S:
+            mp[i]+=1
+        ans=(n*(n-1))//2
+        for i in mp:
+            if (mp[i] > 1):
+                flag=1
+                ans-=(mp[i]*(mp[i]-1)//2)
+        return ans+1 if flag==1 else ans
+        
+            
+        
+        
+        st=list(S)
+        n=len(S)
+        s=set()
+        count=0
+        for i in range(n-1):
+            for j in range(i+1,n):
+                st[i],st[j] = st[j],st[i]
+                s.add("".join(st))
+                st=list(st)
+                st[i],st[j] = st[j],st[i]
+        return len(s)
