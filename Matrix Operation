@@ -1,0 +1,30 @@
+#User function Template for python3
+
+class Solution:
+    def endPoints(self, matrix, m, n):
+        direction='r'
+        i,j=0,0
+        row=m
+        col=n
+        while(True):
+            if (matrix[i][j] == 1):
+                matrix[i][j] = 0
+                if (direction == "u"): direction = "r"
+                elif (direction == "r"): direction = "d"
+                elif (direction == "d"): direction = "l"
+                else:
+                    direction = "u"
+                
+            if (direction == "r"):
+                j+=1
+                if (j >= col): return[i,j-1]
+            elif (direction == "l"):
+                j-=1
+                if (j < 0): return[i,j+1]
+                
+            if (direction == "u"):
+                i-=1
+                if (i < 0): return[i+1,j]
+            elif (direction == "d"):
+                i+=1
+                if (i >= row): return[i-1,j]
