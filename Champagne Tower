@@ -1,0 +1,14 @@
+class Solution:
+    def champagneTower(self, poured: int, query_row: int, query_glass: int) -> float:
+        l = [poured]
+        for _ in range(query_row):
+            ln = [0] * (len(l) + 1)
+            for i in range(len(l)):
+                pour = (l[i] - 1)/2
+                if pour > 0:
+                    ln[i] += pour
+                    ln[i+1] += pour
+            
+            l = ln
+                    
+        return min(1, l[query_glass])
