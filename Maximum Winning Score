@@ -1,0 +1,7 @@
+class Solution:
+    def findMaxScore(self, root):
+        if (root == None):
+            return 1
+        left = self.findMaxScore(root.left)
+        right = self.findMaxScore(root.right)
+        return (root.data * max(left,right))
