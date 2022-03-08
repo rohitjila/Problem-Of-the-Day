@@ -1,0 +1,10 @@
+def reverse(S):
+    stack=[]
+    ans=[]
+    for i in range(len(S)):
+        stack.append(S[i])
+    while(stack):
+        value=stack.pop()
+        ans.append(value)
+    return "".join(ans)
+        
