@@ -1,0 +1,18 @@
+
+class Solution:
+    def findHeight(self, N, arr):
+        return self.solve(N-1,arr)
+        
+    def solve(self,ind,arr):
+        if (arr[ind] == -1):
+            return 1
+        return 1 + self.solve(arr[ind],arr)
+    
+        child=-1
+        h=1
+        parent=arr[N-1]
+        while(parent != -1):
+            child=arr[child]
+            h+=1
+            parent=arr[child]
+        return h
