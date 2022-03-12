@@ -1,0 +1,15 @@
+from collections import defaultdict
+class Solution:
+    def checkMirrorTree(self, n, e, A, B):
+        if (len(A) != len(B)):
+            return 0
+        mp=defaultdict(lambda : [])
+        for i in range(0,2*e,2):
+            mp[A[i]].append(A[i+1])
+        for i in range(0,2*e,2):
+            top=mp[B[i]][-1]
+            if (top != B[i+1]):
+                return 0
+            mp[B[i]].pop()
+                
+        return 1
