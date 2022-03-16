@@ -1,0 +1,22 @@
+class Solution:
+    def subsets(self, A):
+        ans=[]
+        ind=0
+        self.solve(A,ans,[],ind)
+        ans.sort()
+        return ans
+            
+    def solve(self,A,ans,lst,ind):
+        if (ind == len(A)):
+            lst1=[]
+            for i in range(len(lst)):
+                lst1.append(lst[i])
+            ans.append(lst1)
+            return
+        
+        lst.append(A[ind])
+        self.solve(A,ans,lst,ind+1)
+        lst.pop()
+        self.solve(A,ans,lst,ind+1)
+        return
+                
