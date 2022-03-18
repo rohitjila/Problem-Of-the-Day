@@ -1,0 +1,21 @@
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        freq=[0]*26
+        exist=[False]*26
+        stack=[]
+        for i in s:
+            freq[ord(i)-ord('a')]+=1
+        # return freq
+        for i in range(len(s)):
+            freq[ord(s[i]) - ord('a')]-=1
+            if (exist[ord(s[i]) - ord('a')]) == True:
+                continue
+            
+            while(len(stack) > 0 and stack[-1] > s[i] and freq[ord(stack[-1]) - ord('a')] > 0):
+                rem=stack.pop()
+                exist[ord(rem)-ord('a')]=False
+                
+            stack.append(s[i])
+            exist[ord(s[i]) - ord('a')]=True
+                
+        return "".join(stack)
