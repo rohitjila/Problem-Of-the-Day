@@ -1,0 +1,25 @@
+#User function Template for python3
+
+class Solution:
+	def findRank(self, S):
+		S=list(S)
+        n=len(S)
+        fact=[0]*26
+        fact[0]=1
+        fact[1]=1
+        arr=[0]*256
+        for i in range(2,26):
+            fact[i]=i*fact[i-1]
+        for i in range(n):
+            arr[ord(S[i])]+=1
+        output=0
+        for i in range(n):
+            numberofSmallerInput=0
+            for j in range(0,256):
+                if (j == ord(S[i])):
+                    break
+                if(arr[j]):
+                    numberofSmallerInput+=1
+            arr[ord(S[i])]=0
+            output+=numberofSmallerInput*fact[n-1-i]
+        return output+1
