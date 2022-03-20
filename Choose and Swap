@@ -1,0 +1,17 @@
+class Solution:
+    def chooseandswap (self, A):
+        A=list(A)
+        s=sorted(set(A))
+        for i in range(len(A)):
+            if (A[i] in s):
+                s.remove(A[i])
+            if (len(s) == 0):
+                break
+            ch=s[0]
+            if (ch < A[i]):
+                ch2=A[i]
+                for j in range(len(A)):
+                    if (A[j] == ch): A[j]=ch2
+                    elif (A[j] == ch2): A[j]=ch
+                break
+        return "".join(A)
