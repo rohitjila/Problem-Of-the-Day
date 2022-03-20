@@ -1,0 +1,17 @@
+class Solution:
+    def dfsOfGraph(self, V, adj):
+        visited=[0]*(V)
+        lst=[]
+        stack=[]
+        stack.append(0)
+        while(stack):
+            q=stack.pop()
+            if (visited[q]  == 0):
+                lst.append(q)
+                visited[q]=1
+                
+            for it in adj[q]:
+                if (visited[it] == 0):
+                    stack.append(it)
+                    
+        return lst
