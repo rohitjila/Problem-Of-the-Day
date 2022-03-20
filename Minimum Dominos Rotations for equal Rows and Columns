@@ -1,0 +1,24 @@
+class Solution:
+    def solve1(self,tops,bottoms):
+        n= len(tops)
+        ans=-9999999
+        mp=defaultdict(lambda : 0)
+        mp1=defaultdict(lambda : 0)
+        for i in range(n):
+            mp[tops[i]]+=1
+            if (tops[i] != bottoms[i]):
+                mp1[bottoms[i]]+=1
+        for i in range(1,7):
+            x = mp[i] + mp1[i]
+            if (x == n):
+                ans=mp1[i]
+                break
+        return ans
+    
+    
+    def minDominoRotations(self, tops: List[int], bottoms: List[int]) -> int:
+        ans1=self.solve1(tops,bottoms)
+        ans2=self.solve1(bottoms,tops)
+        res= min(ans1,ans2)
+        res1 = -1 if (res == -9999999) else res
+        return res1
