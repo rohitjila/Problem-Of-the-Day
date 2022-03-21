@@ -1,0 +1,15 @@
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        n=len(s)
+        mp={s[i]:i for i in range(n)}
+        i=0
+        ans=[]
+        while(i < n):
+            j,end=i+1,mp[s[i]]
+            while(j < end):
+                if (mp[s[j]] > end):
+                    end=mp[s[j]]
+                j+=1
+            ans.append(end-i+1)
+            i=end+1
+        return ans
