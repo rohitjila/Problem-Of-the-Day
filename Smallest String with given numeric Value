@@ -1,0 +1,17 @@
+class Solution:
+    def getSmallestString(self, n: int, k: int) -> str:
+        ans=[0]*(n)
+        for i in range(n):
+            ans[i]='a'
+        k=k-n
+        j=n-1
+        while(k > 0):
+            if (k < 25):
+                ans[j]=chr(ord('a')+k)
+                k = 0
+            else:
+                ans[j]='z'
+                k=k-25
+            j-=1
+        return "".join(ans)
+        
