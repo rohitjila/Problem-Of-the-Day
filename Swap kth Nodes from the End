@@ -1,0 +1,34 @@
+def swapkthnode(head,num,k):
+    if (k > num):
+        return head
+    first = head
+    second = head
+    fprev=None
+    sprev=None
+    for i in range(k-1):
+        fprev = first
+        first = first.next
+        
+    for i in range(num-k):
+        sprev=second
+        second=second.next
+        
+    if (k == 1):
+        sprev.next = first
+        second.next = first.next
+        first.next = None
+        return second   
+        
+    if (k == num):
+        fprev.next = second
+        first.next = second.next
+        second.next = None
+        return first
+        
+    else:
+        fprev.next = second 
+        sprev.next = first
+        temp=first.next
+        first.next = second.next
+        second.next=temp 
+        return head
