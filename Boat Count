@@ -1,0 +1,17 @@
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        n=len(people)
+        people.sort()
+        i=0
+        j=n-1
+        boatCount=0
+        while(i <= j):
+            Sum=people[i]+people[j]
+            if (Sum <= limit):
+                boatCount+=1
+                i+=1
+                j-=1
+            elif (Sum > limit):
+                boatCount+=1
+                j-=1
+        return boatCount
