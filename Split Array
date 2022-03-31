@@ -1,0 +1,28 @@
+class Solution:
+    def isPossible(self,nums,m,mid):
+        Sum=0
+        student=1
+        for i in range(len(nums)):
+            Sum+=nums[i]
+            if (Sum > mid):
+                student+=1
+                Sum=nums[i]
+                
+        if (student <= m):
+            return True
+        else:
+            return False
+        
+    def splitArray(self, nums: List[int], m: int) -> int:
+        mx = max(nums)
+        Sum = sum(nums)
+        low=mx
+        high=Sum
+        while(low <= high):
+            mid = low + (high-low)//2
+            if (self.isPossible(nums,m,mid)):
+                ans = mid
+                high=mid-1
+            else:
+                low=mid+1
+        return ans
