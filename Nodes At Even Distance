@@ -1,0 +1,23 @@
+class Solution:
+    def dfs(self,node,graph,dist,vis,count):
+        vis[node]=True
+        dist[node]=count
+        for it in graph[node]:
+            if (vis[it] == False):
+                self.dfs(it,graph,dist,vis,count+1)
+            
+        
+    def countOfNodes(self, graph,n):
+        dist=[0]*(n+1)
+        vis=[False]*(n+1)
+        self.dfs(1,graph,dist,vis,0)
+        countEven=0
+        countOdd=0
+        for i in range(1,len(dist)):
+            if (dist[i] % 2 == 0):
+                countEven+=1
+            else:
+                countOdd+=1
+        ans1=((countEven)*(countEven-1))//2
+        ans2=((countOdd)*(countOdd-1))//2   
+        return ans1+ans2
