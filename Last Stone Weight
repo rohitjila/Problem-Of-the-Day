@@ -1,0 +1,24 @@
+class Solution:
+    def lastStoneWeight(self, arr: List[int]) -> int:
+        n = len(arr)
+        hq=[]
+        heapify(hq)
+        if (n == 1):
+            return arr[0]
+        for i in range(n):
+            arr[i]=-arr[i]
+        for i in range(n):
+            heappush(hq,arr[i])
+        print(hq)
+        while(len(hq) > 1):
+            a = heappop(hq)
+            b = heappop(hq)
+            a = -(a)
+            b = -(b)
+            if (a == b):
+                heappush(hq,-0)
+            else:
+                res = a - b
+                res = -res
+                heappush(hq,res)
+        return -(hq[0]) if (arr[0] != -0) else 0
