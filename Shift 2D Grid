@@ -1,0 +1,15 @@
+class Solution:
+    def shiftGrid(self, grid: List[List[int]], k: int) -> List[List[int]]:
+        M ,N = len(grid) , len(grid[0])
+        def PosToVal(r,c):
+            return r*N+c
+        def ValToPos(val):
+            return [val//N,val%N]
+
+        res = [[0]*N for i in range(M)]
+        for i in range(M):
+            for j in range(N):
+                newVal = (PosToVal(i,j)+k)% (N*M)
+                newR,newC = ValToPos(newVal)
+                res[newR][newC]=grid[i][j]
+        return res
