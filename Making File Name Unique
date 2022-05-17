@@ -1,0 +1,50 @@
+class Solution:
+    def getFolderNames(self, names: List[str]) -> List[str]:
+        last = {}
+        for name in names:
+            modified = name
+            if name in last:
+                k = last[name]
+                while modified in last:
+                    k+=1
+                    modified = f'{name}({k})'
+                last[name]=k
+                last[modified]=0
+            else:
+                last[modified]=0
+        return last.keys()
+            
+        
+    
+        
+        
+        # last = {}
+        # for name in names:
+        #     modified = name
+        #     if name in last:
+        #         k = last[name]
+        #         while modified in last:
+        #             k += 1
+        #             modified = f'{name}({k})'
+        #         last[name] = k
+        #     last[modified] = 0
+        # print(last)
+        # return last.keys()
+        # s = set()
+#         n = len(names)
+#         ans = []
+#         for i in range(n):
+#             if names[i] in ans:
+#                 count=1
+#                 var = "("+str(count)+")"
+#                 while((names[i] + var) in ans):
+#                     count+=1
+#                     var="("+str(count)+")"
+#                 # s.add(names[i] + var)
+#                 ans.append(names[i] + var)
+#             else:
+#                 # s.add(names[i])
+#                 ans.append(names[i])
+#         return ans
+                    
+        
