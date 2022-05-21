@@ -1,0 +1,22 @@
+class Solution:
+    def canArrange(self, arr: List[int], k: int) -> bool:
+        mp = collections.defaultdict(lambda : 0)
+        for a in arr:
+            mp[(a+k)%k]+=1
+        #changed negative number into positive number 
+        #for example if k = 3
+        # one value is 1 for pair up we have to find remainder with value 2 then we will convert -1 to remainder
+        #value 2 and the frequency of 1 and 2 is same so we can pair up
+        # print(mp)
+        
+        if (mp[0] % 2 == 1):
+            # print(False1)
+            #here we are checking for even remainder
+            return False
+        for i in range(1,k):
+            if (mp[i] != mp[k-i]):
+                # print(False)
+                #here if frequency of any value is suppose 2 and then k = 5 and other value must k - x that is 3 if the
+                #frequency is same then it must be divisible by k
+                return False
+        return True
