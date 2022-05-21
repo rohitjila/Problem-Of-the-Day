@@ -1,0 +1,18 @@
+class Solution:
+    def isPathCrossing(self, path: str) -> bool:
+        path = list(path)
+        origin,x = 0,0
+        seen = {(0,0)}
+        for i in range(len(path)):
+            if (path[i] == "N"):
+                origin += 1
+            elif (path[i] == "S"):
+                origin -=1
+            elif (path[i] == "E"):
+                x+=1
+            else:
+                x-=1
+            if ((x,origin) in seen):
+                return True
+            seen.add((x,origin))
+        return False
