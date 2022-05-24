@@ -1,0 +1,45 @@
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        #2nd Method without Stack
+        
+        Open,close,maxlength = 0 ,0 ,0
+        for i in range(len(s)):
+            if (s[i] == "("):
+                Open+=1
+            else:
+                close+=1
+                print(close)
+            if (close == Open):
+                maxlength = max(maxlength,2 * close)
+                # print(maxlength)
+            if (close > Open):
+                Open = close = 0
+        
+        Open,close=0,0
+        for i in range(len(s)-1,-1,-1):
+            if (s[i] == "("):
+                Open+=1
+            else:
+                close+=1
+            
+            if (close == Open):
+                maxlength = max(maxlength,2 * Open)
+            if (Open > close):
+                Open = close = 0
+        return maxlength
+        
+        
+        
+        # 1st method with stack
+        stack = [-1]
+        maxlength = 0
+        for i in range(len(s)):
+            if (s[i] == "("):
+                stack.append(i)
+            else:
+                stack.pop()
+                if (len(stack) == 0):
+                    stack.append(i)
+                maxlength = max(maxlength,i-stack[-1])
+        return maxlength
+                
