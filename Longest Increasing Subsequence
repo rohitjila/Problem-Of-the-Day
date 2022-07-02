@@ -1,0 +1,64 @@
+#User function Template for python3
+from bisect import bisect_left as lower_bound
+class Solution:
+    
+    # def f(self,ind,prev,a,n,dp):
+    #     if (ind == n):
+    #         return 0
+            
+    #     if (dp[ind][prev+1] != -1):
+    #         return dp[ind][prev+1]
+            
+    #     length  = 0 + self.f(ind+1,prev,a,n,dp)
+    #     if (prev == -1 or a[ind] > a[prev]):
+    #         length = max(length,1+self.f(ind+1,ind,a,n,dp))
+    #     dp[ind][prev+1] = length 
+    #     return length
+        
+        
+        
+    def longestSubsequence(self,a,n):
+        temp=[0] * (n)
+        temp[0]=a[0]
+        length = 1
+        
+        for i in range(1,n):
+            if (a[i] > temp[length-1]):
+                temp[length] = a[i]
+                length +=1
+                
+            else:
+                ind = lower_bound(temp,a[i],0,length-1)
+                temp[ind]=a[i]
+                
+        return length
+                
+        
+        # maxi = 1
+        # dp = [1 for i in range(n)]
+        # for ind in range(n):
+        #     for prev in range(0,ind):
+        #         if (a[ind] > a[prev]):
+        #             dp[ind] = max(dp[ind],1 + dp[prev])
+        #     maxi= max(maxi,dp[ind])
+        # return maxi
+        
+        
+        
+        
+        # dp = [[-1 for i in range(n)] for i in range(n+1)]
+        # dp = [[0 for i in range(n+1)] for i in range(n+1)]
+        # for ind in range(n-1,-1,-1):
+        #     for prev in range(ind-1,-2,-1):
+        #         length  = 0 + dp[ind+1][prev+1]
+        #         if (prev == -1 or a[ind] > a[prev]):
+        #             length = max(length,1+ dp[ind+1][ind+1])
+        #         dp[ind][prev+1] = length 
+        # return dp[0][-1+1]
+        
+        
+        
+        
+        
+        
+        
