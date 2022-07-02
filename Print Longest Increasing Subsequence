@@ -1,0 +1,27 @@
+def longestSubsequence(a,n):
+    maxi = 1
+    lastindex = 0
+    dp = [1 for i in range(n)]
+    hash = [0] * n
+    for ind in range(n):
+        hash[ind]=ind
+        for prev in range(0,ind):
+            if (a[ind] > a[prev] and 1 + dp[prev] > dp[ind]):
+                dp[ind] = 1 + dp[prev]
+                hash[ind] = prev
+                
+        if (dp[ind] > maxi):
+            maxi = dp[ind]
+            lastindex = ind
+            
+    temp = []
+    temp.append(arr[lastindex])
+    while(hash[lastindex] != lastindex):
+        lastindex = hash[lastindex]
+        temp.append(arr[lastindex])
+        
+    temp.reverse()
+    return temp
+n = 6
+arr=[5,4,11,1,16,8]
+print(longestSubsequence(arr,n))
