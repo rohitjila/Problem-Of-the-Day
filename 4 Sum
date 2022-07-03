@@ -1,0 +1,33 @@
+#User function Template for python3
+
+# arr[] : int input array of integers
+# k : the quadruple sum required
+class Solution:
+    def fourSum(self, arr, k):
+        res = []
+        n = len(arr)
+        arr.sort()
+        for i in range(0,n-3):
+            if (i > 0 and arr[i-1] == arr[i]):
+                continue
+            for j in range(i+1,n-2):
+                if (j > i+1 and arr[j-1] == arr[j]):
+                    continue
+                
+                left = j + 1
+                right = n - 1
+                while(left < right):
+                    old_left = left
+                    old_right = right
+                    Sum = arr[i] + arr[j] + arr[left] + arr[right]
+                    if (Sum == k):
+                        res.append([arr[i],arr[j],arr[left],arr[right]])
+                        while(left < right and arr[left] == arr[old_left]):
+                            left+=1
+                        while(left < right and arr[right] == arr[old_right]):
+                            right-=1
+                    elif(Sum > k):
+                        right-=1
+                    else:
+                        left+=1
+        return res
