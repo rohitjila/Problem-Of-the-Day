@@ -1,0 +1,19 @@
+from collections import defaultdict
+class Solution:
+    # @param A : list of integers
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+        xorr = 0
+        cnt = 0
+        mp = defaultdict(lambda : 0)
+        for i in A:
+            xorr^=i
+            if (xorr == B):
+                cnt +=1
+                
+            if ((xorr ^ B) in mp):
+                cnt+=mp[xorr ^ B]
+                
+            mp[xorr]+=1
+        return cnt
