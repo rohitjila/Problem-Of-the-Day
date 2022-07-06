@@ -1,0 +1,56 @@
+class Solution:
+    def maximumPath(self, N, Matrix):
+        M = len(Matrix[0])
+        dp = [[0 for i in range(M)] for i in range(N)]
+        i = N-1
+        for i in range(M):
+            dp[0][i]=Matrix[0][i]
+            
+        for i in range(1,N):
+            for j in range(0,M):
+                s = Matrix[i][j] + dp[i-1][j]
+                ld = -1e9
+                if (j - 1 >= 0):
+                    ld = Matrix[i][j] + dp[i-1][j-1]
+                rd = -1e9
+                if (j+1 < M):
+                    rd = Matrix[i][j] + dp[i-1][j+1]
+                dp[i][j] = max(s,max(ld,rd))
+        
+        maxi = 0    
+        for j in range(M):
+            maxi = max(maxi,dp[N-1][j])
+        return maxi
+            
+        
+        
+        
+        
+        
+        
+        
+        
+    #     i = N-1
+    #     dp = [[-1 for i in range(M)] for i in range(N)]
+    #     maxi= 0
+    #     for j in range(0,M):
+    #         maxi = max(maxi,self.f(i,j,Matrix,N,M,dp))
+    #     return maxi
+        
+    # def f(self,i,j,Matrix,N,M,dp):
+    #     if (j < 0 or j >= M):
+    #         return -1e9
+            
+    #     if (i == 0):
+    #         return Matrix[0][j]
+            
+    #     if (dp[i][j] != -1):
+    #         return dp[i][j]
+        
+    #     s = Matrix[i][j] + self.f(i-1,j,Matrix,N,M,dp)
+    #     ld = Matrix[i][j] + self.f(i-1,j-1,Matrix,N,M,dp)
+    #     rd = Matrix[i][j] + self.f(i-1,j+1,Matrix,N,M,dp)
+        
+    #     dp[i][j] = max(s,max(ld,rd))
+    #     return dp[i][j]
+        
