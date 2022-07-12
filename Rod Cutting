@@ -1,0 +1,54 @@
+class Solution:
+    def cutRod(self, price, n):
+        dp =[[0 for i in range(n+1)] for i in range(n)]
+        for i in range(n+1):
+            dp[0][i] = i * price[0]
+        for ind in range(1,n):
+            for N in range(0,n+1):
+                notTake = 0 + dp[ind-1][N]
+                Take = -1e9
+                rodlength = ind + 1
+                if (rodlength <= N):
+                    Take = price[ind] + dp[ind][N-rodlength]
+                dp[ind][N] = max(Take,notTake)
+        return dp[n-1][n]
+                
+        
+        
+        return self.f(price,n-1,n,dp)
+        
+    def f(self,price,ind,N,dp):
+        if (ind == 0):
+            return N * price[0]
+        if (dp[ind][N] != -1):
+            return dp[ind][N]
+        notTake = 0 + self.f(price,ind-1,N,dp)
+        Take = -1e9
+        rodlength = ind + 1
+        if (rodlength <= N):
+            Take = price[ind] + self.f(price,ind,N-rodlength,dp)
+        dp[ind][N] = max(Take,notTake)
+        return dp[ind][N]
+        
+        
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+def main():
+
+    T = int(input())
+
+    while(T > 0):
+        n = int(input())
+        a = [int(x) for x in input().strip().split()]
+        ob = Solution()
+        print(ob.cutRod(a, n))
+
+        T -= 1
+
+
+if __name__ == "__main__":
+    main()
+# } Driver Code Ends
