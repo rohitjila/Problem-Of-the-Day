@@ -1,0 +1,44 @@
+#User function Template for python3
+
+class Solution:
+    def f(self,ind,n,S,dp):
+        if (n == 0):
+            return 1
+        if (ind == 0):
+            if (S[0] <= n):
+                if (n % S[0] == 0):
+                    return 1
+                else:
+                    return 0
+            else:
+                return 0
+        if (dp[ind][n] != -1):
+            return dp[ind][n]
+                
+        
+        Take = 0
+        notTake = self.f(ind-1,n,S,dp)
+        if (S[ind] <= n):
+            Take = self.f(ind,n-S[ind],S,dp)
+        dp[ind][n] = Take + notTake
+        return dp[ind][n]
+            
+            
+            
+    def count(self, S, m, n):
+        dp = [[-1 for i in range(n+1)] for i in range(m)]
+        dp = [[0 for i in range(n+1)] for i in range(m)]
+        for i in range(0,n+1):
+            if (i % S[0] == 0):
+                dp[0][i] = 1
+                    
+
+        for i in range(1,m):
+            for j in range(0,n+1):
+                Take = 0
+                notTake = dp[i-1][j]
+                if (S[i] <= j):
+                    Take = dp[i][j-S[i]]
+                dp[i][j] = Take + notTake
+        return dp[-1][-1]
+                
