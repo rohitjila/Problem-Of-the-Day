@@ -1,0 +1,56 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        #step 1 Make deep copy and attach next pointer
+        item = head
+        front = head
+        while(item != None):
+            front = item.next
+            copy = Node(item.val)
+            item.next = copy
+            copy.next = front
+            item = front
+        #step - 2 Make random pointer with original linked list
+        
+        item = head
+        while(item):
+            if (item.random != None):
+                item.next.random = item.random.next
+            item = item.next.next
+            
+        #Step - 3 Seperate original and deep copy linked list
+        pseudocopy = Node(0)
+        copy = pseudocopy
+        item = head
+        while(item):
+            front = item.next.next
+            copy.next = item.next
+            item.next = front
+            copy = copy.next
+            item = item.next
+        return pseudocopy.next
+        
+          
+    #2nd Method
+        
+        oldToCopy = {None : None}
+        curr = head
+        while(curr):
+            oldToCopy[curr] = Node(curr.val)
+            curr=curr.next
+            
+        curr = head
+        while(curr):
+            copy = oldToCopy[curr]
+            copy.next = oldToCopy[curr.next]
+            copy.random = oldToCopy[curr.random]
+            curr = curr.next
+        return oldToCopy[head]
