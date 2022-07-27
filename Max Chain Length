@@ -1,0 +1,34 @@
+
+'''
+class Pair(object):
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+'''
+class Solution:
+    def maxChainLen(self,Parr, n):
+        Parr.sort(key=lambda x : x.b) 
+        c = 1
+        i = 0
+        j = 1
+        while(j < n):
+            if (Parr[i].b < Parr[j].a):
+                c+=1
+                i=j
+            j+=1
+        return c
+        
+        
+    
+        
+        # dp = [1 for i in range(n)]
+        # for ind in range(0,n):
+        #     for prev in range(ind):
+        #         if (Parr[ind].a > Parr[prev].b):
+        #             dp[ind] = max(dp[ind] , 1 + dp[prev])
+                    
+        # return max(dp)
+                    
+            
+                    
+        
