@@ -1,0 +1,12 @@
+class Solution:
+	def maxSumIS(self, Arr, n):
+		Sum = [0 for i in range(n+1)]
+		Sum[0] = Arr[0]
+		maxi = Arr[0]
+		for ind in range(1,n):
+		    Sum[ind]=Arr[ind]
+		    for prev in range(0,ind):
+		        if (Arr[ind] > Arr[prev]):
+		            Sum[ind] = max(Sum[ind], Arr[ind]+Sum[prev])
+		    maxi = max(maxi,Sum[ind])
+		return maxi
