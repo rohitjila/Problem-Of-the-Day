@@ -1,0 +1,35 @@
+class Solution:
+	def minJumps(self, A, n):
+	    maxR = A[0]
+        steps = A[0]
+        jumps = 1
+        if(n == 1):
+            return 0
+        elif(A[0] == 0):
+            return -1
+        else:
+            for i in range(1,n):
+                if(i == n - 1):
+                    return jumps
+                maxR = max(maxR,i+A[i])
+                steps-=1
+                if(steps == 0):
+                    jumps+=1
+                    if(i >= maxR):
+                        return -1
+                    steps = maxR - i
+                    
+                    
+        # jumps = [-1 for  i in range(n)]
+        # if(n == 0 or arr[0] == 0):
+        #     return -1
+        # jumps[0] = 0
+        # for i in range(1,n):
+        #     jumps[i] = float('inf')
+        #     for j in range(i):
+        #         if(i < j + arr[j]+1 and jumps[j] != float('-inf')):
+        #             jumps[i] = min(jumps[i],jumps[j] + 1)
+        #             break
+        # return jumps[n-1]
+                    
+
