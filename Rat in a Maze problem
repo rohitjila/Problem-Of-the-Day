@@ -1,0 +1,31 @@
+class Solution:
+    def solve(self,i,j,m,n,move,ans,vis):
+        if(i == n-1 and j == n-1):
+            if(m[i][j] == 1):
+                ans.append(move)
+                return 
+            else:
+                return
+            
+        if(i < 0 or i >= n or j < 0 or j >= n or m[i][j] == 0):
+            return 
+        if(i,j) in vis:
+            return
+        
+        vis.add((i,j))
+        
+        self.solve(i+1,j,m,n,move+"D",ans,vis)
+        self.solve(i,j-1,m,n,move+"L",ans,vis)
+        self.solve(i,j+1,m,n,move+"R",ans,vis)
+        self.solve(i-1,j,m,n,move+"U",ans,vis)
+        
+        vis.remove((i,j))
+        
+    def findPath(self, m, n):
+        ans = []
+        # vis = [[0 for i in range(n)] for i in range(n)]
+        vis = set()
+        if (m[0][0] == 1):
+            self.solve(0,0,m,n,"",ans,vis)
+        return ans
+        
