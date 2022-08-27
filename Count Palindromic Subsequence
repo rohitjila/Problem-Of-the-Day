@@ -1,0 +1,27 @@
+class Solution:
+    # Your task is to complete this function
+    # Function should return an integer
+    def solve(self,i,j,string,dp):
+        global mod
+        if(i > j):
+            return 0
+        if(i == j):
+            return 1
+        if(dp[i][j] != -1):
+            return int(dp[i][j] % mod)
+            
+        if(string[i] == string[j]):
+            dp[i][j] = self.solve(i+1,j,string,dp) + self.solve(i,j-1,string,dp) + 1
+            return int(dp[i][j] % mod)
+
+        else:
+            dp[i][j] = self.solve(i+1,j,string,dp) + self.solve(i,j-1,string,dp) - self.solve(i+1,j-1,string,dp)
+            return int(dp[i][j]%  mod)
+    
+    
+    def countPS(self,string):
+        global mod 
+        mod = 1e9 + 7
+        n = len(string)
+        dp = [[-1 for i in range(n)] for i in range(n)]
+        return self.solve(0,n-1,string,dp)
