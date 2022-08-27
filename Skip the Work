@@ -1,0 +1,13 @@
+class Solution:
+    def minAmount(self, A, n): 
+        incl = A[0]
+        excl = 0
+        
+        for i in range(1,n):
+            incl_new = A[i] + min(incl,excl)
+            excl_new = incl
+            
+            incl = incl_new
+            excl = excl_new
+            
+        return min(incl,ex)
