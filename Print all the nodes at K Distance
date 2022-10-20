@@ -1,0 +1,62 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+from collections import defaultdict
+class Solution:
+    def markParents(self,root,parent_track,target):
+        queue = []
+        queue.append(root)
+        while(queue):
+            current = queue.pop(0)
+            if(current.left):
+                parent_track[current.left].append(current)
+                queue.append(current.left)
+            if(current.right):
+                parent_track[current.right].append(current)
+                queue.append(current.right)
+    
+    
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        parent_track = defaultdict(list)
+        self.markParents(root,parent_track,target)
+        
+        visited = {}
+        
+        queue = []
+        queue.append(target)
+        visited[target]=True
+        
+        curr_level = 0
+        while(queue):
+            size = len(queue)
+            if (curr_level == k):
+                break
+            curr_level += 1
+            
+            for i in range(size):
+                current = queue.pop(0)
+                
+                if(current.left):
+                    if(current.left not in visited):
+                        queue.append(current.left)
+                        visited[current.left] = True
+                
+                if(current.right):
+                    if(current.right not in visited):
+                        queue.append(current.right)
+                        visited[current.right] = True
+                if(parent_track[current]):
+                    if(parent_track[current][0] not in visited):
+                        queue.append(parent_track[current][0])
+                        visited[parent_track[current][0]] = True
+                
+                    
+        result = []
+        while(queue):
+            current = queue.pop(0)
+            result.append(current.val)
+        return result
